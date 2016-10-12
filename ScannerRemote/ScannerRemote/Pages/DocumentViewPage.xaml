@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ScannerRemote.Controls"
+             xmlns:local="clr-namespace:ScannerRemote.Converter;assembly=ScannerRemote"
+             x:Class="ScannerRemote.Pages.DocumentViewPage"
+             Title="View PDF">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <local:UrlConverter x:Key="urlConvert"></local:UrlConverter>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <ContentPage.Content>
+    <StackLayout>
+      <controls:CustomWebView Uri="{Binding Entry.Name, Converter={StaticResource urlConvert}, ConverterParameter='file:///data/data/ScannerRemote.Droid/files/Documents/{0}'}"
+                              x:Name="pdfviewer"
+                              HorizontalOptions="FillAndExpand"
+                              VerticalOptions="FillAndExpand" />
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

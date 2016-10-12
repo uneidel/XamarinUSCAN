@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ScannerRemote.Pages.DocumentContentPage"
+             Title="PDFContent">
+  <ContentPage.Content>
+    <StackLayout Orientation="Vertical">
+      <Label Text="PDF Content:" FontSize="18" FontAttributes="Bold"></Label>
+      <ScrollView >
+        <Label LineBreakMode="WordWrap" Text="{Binding Entry.ContentAsText}"  />
+      </ScrollView>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

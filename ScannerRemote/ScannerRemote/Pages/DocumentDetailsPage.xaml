@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ScannerRemote.Pages.DocumentDetailsPage"
+             Title="Details">
+  <ContentPage.Content>
+    <StackLayout>
+      
+        <Label FontSize="18" FontAttributes="Bold" Text="Name: " />
+        <Label FontSize="18" Text="{Binding Entry.Name}" />
+        <Label FontSize="18" FontAttributes="Bold" Text="Created: " />
+        <Label FontSize="18" Text="{Binding Entry.Created.DateTime}" />
+        <Label FontSize="18" FontAttributes="Bold" Text="Selected Keyword:" />
+        <Label FontSize="18" Text="{Binding Entry.KeyWords}" />
+      <Label FontSize="18"  FontAttributes="Bold" Text="Keywords:" />
+      <ListView x:Name="Taglsv" RowHeight="40" ItemsSource="{Binding Tags}" >
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell Tapped="onViewCellTapped">
+              <StackLayout Orientation="Vertical" VerticalOptions="Center">
+                <Label Text="{Binding TagName}" FontSize="22"  />
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

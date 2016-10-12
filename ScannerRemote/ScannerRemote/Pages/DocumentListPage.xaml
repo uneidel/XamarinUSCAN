@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ScannerRemote.Pages.DocumentListPage">
+  
+  <ContentPage.Content>
+    <StackLayout>
+    <ProgressBar x:Name="downloadProgress" Progress="0.0"></ProgressBar>
+    <ListView x:Name="lstView" ItemsSource="{Binding Entries}"   RowHeight="60" ItemTapped="LstView_ItemTapped" ItemSelected="OnItemSelected">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Padding="20,0,0,0" HorizontalOptions="StartAndExpand" Orientation="Vertical">
+              <Label  Text="{Binding Name}" VerticalTextAlignment="Start" />
+              <Label  Text="{Binding Created.DateTime}" FontSize="12"/>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
