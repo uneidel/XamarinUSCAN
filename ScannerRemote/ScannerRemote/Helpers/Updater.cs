@@ -53,6 +53,13 @@ namespace ScannerRemote.Helpers
 
                 var rest = new apihelper();
                 var tmp =  await rest.GetFiles();
+                if (tmp == null)
+                {
+                    // Loading files went wrong
+                    UpdateProgressBar(1.0);
+                    UpdateLabel("An error occured");
+                    return;
+                }
               
                 var docsindb = DAL.RealmDAL.Instance.GetAllDocuments();
                 var count = 0;

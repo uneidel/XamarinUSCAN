@@ -61,11 +61,25 @@ namespace ScannerRemote.DAL
             var Items = new List<DocumentItem>();
             using (var client = new RestClient(new Uri(APIURL)))
             {
-                var request = new RestRequest("documents", Method.GET);
-                client.Timeout = TimeSpan.FromSeconds(1);
+                // Create cancellation token source for timeout
+                var cancellationTokenSource = new System.Threading.CancellationTokenSource();
+                cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(15));
 
-                var result = await client.Execute<List<DocumentItem>>(request);
-                Items = result.Data;
+                try
+                {
+                    var request = new RestRequest("documents", Method.GET);
+                    var result = await client.Execute<List<DocumentItem>>(request, cancellationTokenSource.Token);
+                    Items = result.Data;
+                }
+                catch (TaskCanceledException) 
+                {
+                    if (cancellationTokenSource.Token.IsCancellationRequested)
+                    {
+                        // Timed Out
+                    }
+
+                    Items = null;
+                }
             }
 
             return Items;
